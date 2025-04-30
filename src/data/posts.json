@@ -1,0 +1,22 @@
+{
+  "posts": [
+    {
+      "id": "1",
+      "username": "cclleeeo",
+      "profilePicture": "/images/profile_picture.jpg",
+      "images": ["/images/sophcherry1.jpg", "/images/sophcherry2.jpg"],
+      "caption": "brighter days ahead",
+      "timestamp": "2024-03-20T10:00:00Z",
+      "likes": 20250401
+    },
+    {
+      "id": "2",
+      "username": "cclleeeo",
+      "profilePicture": "/images/profile_picture.jpg",
+      "images": ["/images/16th.jpeg"],
+      "caption": "guess which cake i got",
+      "timestamp": "2020-09-25T15:30:00Z",
+      "likes": 20200925
+    }
+  ]
+} 

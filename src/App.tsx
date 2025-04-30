@@ -1,25 +1,65 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Box, CssBaseline, ThemeProvider, createTheme } from '@mui/material';
+import Post from './components/Post';
+import Header from './components/Header';
+import { PostType } from './types';
+import postsData from './data/posts.json';
+import './fonts/fonts.css';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: '"Instagram Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif',
+    button: {
+      textTransform: 'none',
+    },
+  },
+  palette: {
+    background: {
+      default: '#fafafa',
+    },
+  },
+  components: {
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#ffffff',
+        },
+      },
+    },
+  },
+});
 
 function App() {
+  const posts: PostType[] = postsData.posts.map(post => ({
+    ...post,
+    timestamp: new Date(post.timestamp)
+  }));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <Header />
+      <Box sx={{ 
+        display: 'flex',
+        justifyContent: 'center',
+        backgroundColor: '#fafafa',
+        minHeight: '100vh'
+      }}>
+        <Box sx={{ 
+          width: '100%',
+          maxWidth: '470px',
+          pt: '60px',
+          backgroundColor: '#fafafa',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '12px'
+        }}>
+          {posts.map((post) => (
+            <Post key={post.id} post={post} />
+          ))}
+        </Box>
+      </Box>
+    </ThemeProvider>
   );
 }
 
