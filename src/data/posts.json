@@ -4,6 +4,15 @@
       "id": "1",
       "username": "cclleeeo",
       "profilePicture": "/images/profile_picture.jpg",
+      "images": ["/images/20250424_1.jpg", "/images/20250424_2.jpg"],
+      "caption": "malatang with @raizel and @isabelle (side of pokemon)",
+      "timestamp": "2024-04-24T12:00:00Z",
+      "likes": 20250424
+    },
+    {
+      "id": "1",
+      "username": "cclleeeo",
+      "profilePicture": "/images/profile_picture.jpg",
       "images": ["/images/sophcherry1.jpg", "/images/sophcherry2.jpg"],
       "caption": "brighter days ahead",
       "timestamp": "2025-03-20T10:00:00Z",
