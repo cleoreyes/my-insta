@@ -20,6 +20,25 @@ import {
 } from '@mui/icons-material';
 import { PostType } from '../types';
 
+const getRelativeTime = (timestamp: Date): string => {
+  const now = new Date();
+  const diffInSeconds = Math.floor((now.getTime() - timestamp.getTime()) / 1000);
+  
+  const seconds = Math.floor(diffInSeconds);
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+  const weeks = Math.floor(days / 7);
+  const years = Math.floor(days / 365);
+
+  if (years > 0) return `${years} ${years === 1 ? 'year' : 'years'} ago`;
+  if (weeks > 0) return `${weeks} ${weeks === 1 ? 'week' : 'weeks'} ago`;
+  if (days > 0) return `${days} ${days === 1 ? 'day' : 'days'} ago`;
+  if (hours > 0) return `${hours} ${hours === 1 ? 'hour' : 'hours'} ago`;
+  if (minutes > 0) return `${minutes} ${minutes === 1 ? 'minute' : 'minutes'} ago`;
+  return 'just now';
+};
+
 interface PostProps {
   post: PostType;
 }
@@ -165,7 +184,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           </>
         )}
       </Box>
-      <CardActions disableSpacing sx={{ px: 2, pt: 1, pb: 0 }}>
+      <CardActions disableSpacing sx={{ px: 1, pt: 1, pb: 0 }}>
         <IconButton 
           onClick={handleLike}
           sx={{ 
@@ -175,20 +194,20 @@ const Post: React.FC<PostProps> = ({ post }) => {
           }}
         >
           {isLiked ? (
-            <Favorite sx={{ color: '#ed4956' }} />
+            <Favorite sx={{ color: '#ed4956', fontSize: 28 }} />
           ) : (
-            <FavoriteBorder />
+            <FavoriteBorder sx={{ fontSize: 28 }} />
           )}
         </IconButton>
+        <Typography sx={{ 
+          fontSize: '16px',
+          fontWeight: 600,
+          ml: 0.25
+        }}>
+          {likesCount}
+        </Typography>
       </CardActions>
       <CardContent sx={{ p: 2, pt: 1 }}>
-        <Typography sx={{ 
-          fontSize: '14px',
-          fontWeight: 500,
-          mb: 1
-        }}>
-          {likesCount} likes
-        </Typography>
         <Typography sx={{ 
           fontSize: '14px',
           mb: 1,
@@ -204,10 +223,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
           fontSize: '12px',
           letterSpacing: '.01em'
         }}>
-          {new Date(post.timestamp).toLocaleDateString('en-US', { 
-            month: 'long',
-            day: 'numeric'
-          })}
+          {getRelativeTime(new Date(post.timestamp))}
         </Typography>
       </CardContent>
     </Card>

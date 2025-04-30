@@ -48,11 +48,13 @@ function App() {
         <Box sx={{ 
           width: '100%',
           maxWidth: '470px',
-          pt: '60px',
+          pt: '44px',
           backgroundColor: '#fafafa',
           display: 'flex',
           flexDirection: 'column',
-          gap: '12px'
+          '& > *:not(:last-child)': {
+            marginBottom: '12px'
+          }
         }}>
           {posts.map((post) => (
             <Post key={post.id} post={post} />
